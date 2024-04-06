@@ -33,3 +33,4 @@ O sistema fará um scan da credencial do participante para permitir a entrada no
 
 1. Node JS
 2. Fastify
+3. Prisma
