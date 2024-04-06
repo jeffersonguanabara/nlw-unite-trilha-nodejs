@@ -1,5 +1,9 @@
 import fastify from "fastify";
-import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod'
+
+import fastitySwagger from "@fastify/swagger";
+import fastitySwaggerUI from "@fastify/swagger-ui";
+
+import { serializerCompiler, validatorCompiler, jsonSchemaTransform } from 'fastify-type-provider-zod'
 import { createEvent } from "./routes/create-event";
 import { registerForEvent } from "./routes/register-for-event";
 import { getEvent } from "./routes/get-event";
@@ -8,6 +12,23 @@ import { checkIn } from "./routes/check-ins";
 import { getEventAttendees } from "./routes/get-event-attendees";
 
 const app = fastify()
+
+app.register(fastitySwagger, {
+  swagger: {
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    info: {
+      title: 'pass.in',
+      description: 'Especificações da API para o back-end da aplicação pass.in, construída durante o NLW Unite da Rocketseat',
+      version: '1.0.0'
+    },
+  },
+  transform: jsonSchemaTransform,
+})
+
+app.register(fastitySwaggerUI, {
+  routePrefix: '/docs',
+})
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
