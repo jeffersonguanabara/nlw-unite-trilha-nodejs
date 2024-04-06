@@ -6,3 +6,19 @@ Content-Type: application/json
   "details": "Um evento para quem é apaixonado por programação",
   "maximumAttendees": 100
 }
+
+###
+
+POST http://localhost:3333/events/85fb684e-7d2f-47dd-9f26-fad2c775bcb2/attendees
+Content-Type: application/json
+
+{
+  "name": "Jefferson Guanabara",
+  "email": "jefferson.guanabara@test.com"
+}
+
+###
+GET http://localhost:3333/events/85fb684e-7d2f-47dd-9f26-fad2c775bcb2
+
+###
+GET http://localhost:3333/attendees/1/badge
